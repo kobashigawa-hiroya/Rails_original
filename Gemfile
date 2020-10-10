@@ -35,6 +35,7 @@ gem "rails-i18n", "~> 6.0"
 gem "devise-i18n"
 gem "foreman"
 gem "bulma-rails", "~> 0.8.0"
+gem "activeadmin"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

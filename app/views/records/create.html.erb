@@ -1,0 +1,9 @@
+<h1>結果発表</h1>
+<strong>名前</strong>
+<% @members.each do |member| %>
+  <%= member.name %>
+<% end %>
+<% @duties.each do |duty| %>
+  <strong>項目</strong>
+  <%= duty.title %>
+<% end %>
