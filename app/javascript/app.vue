@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <v-btn>Vuetifyのボタン</v-btn>
     <p>{{ message }}</p>
   </div>
 </template>
