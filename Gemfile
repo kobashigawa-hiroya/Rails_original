@@ -36,6 +36,10 @@ gem "devise-i18n"
 gem "foreman"
 gem "bulma-rails", "~> 0.8.0"
 gem "activeadmin"
+gem "jquery-rails"
+gem "pry-rails"
+gem "pry-byebug"
+gem "pry-doc"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
