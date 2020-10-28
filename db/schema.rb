@@ -38,12 +38,6 @@ ActiveRecord::Schema.define(version: 2020_10_10_083942) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "counters", force: :cascade do |t|
-    t.datetime "datetime"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "duties", force: :cascade do |t|
     t.string "title"
     t.boolean "display", default: true
@@ -60,11 +54,10 @@ ActiveRecord::Schema.define(version: 2020_10_10_083942) do
 
   create_table "records", force: :cascade do |t|
     t.integer "member_id", null: false
-    t.integer "counter_id", null: false
+    t.datetime "datetime", null: false
     t.integer "duty_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["counter_id"], name: "index_records_on_counter_id"
     t.index ["duty_id"], name: "index_records_on_duty_id"
     t.index ["member_id"], name: "index_records_on_member_id"
   end
@@ -81,7 +74,6 @@ ActiveRecord::Schema.define(version: 2020_10_10_083942) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "records", "counters"
   add_foreign_key "records", "duties"
   add_foreign_key "records", "members"
 end

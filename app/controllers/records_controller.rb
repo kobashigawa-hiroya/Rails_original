@@ -30,24 +30,38 @@ class RecordsController < ApplicationController
   end
 
   def create
-    member_ids = params[:name].map(&:to_i)
+    member_ids = params[:name].map(&:to_i).shuffle
     duty_ids = params[:title].map(&:to_i)
     duty_people_numbers = params[:people].map(&:to_i)
 
     # 「memberの人数」と 「people の人数の合計」が一致しているかどうかを確認
-    if member_ids.size == duty_people_numbers.sum
-      @members = Member.where(id: member_ids)
-      @duties = Duty.where(id: duty_ids)
-      # @duties = params[:title].shuffle!
-      # @members = params[:name].shuffle!
-    else
-      redirect_to root_path
+    unless member_ids.size == duty_people_numbers.sum && duty_ids.size == duty_people_numbers.size
+      redirect_to root_path and return 
     end
+
+    datetime = Time.current
+    @record_list = []
+    duty_people_numbers.each_with_index do |people_number, index|
+      member_ids.pop(people_number).each do |member_id|
+        @record_list << {
+          member_id: member_id,
+          duty_id: duty_ids[index],
+          datetime: datetime
+        }
+      end
+    end
+    Record.create!(@record_list)
+
+    ordered_member_ids = @record_list.map { |record| record[:member_id] }
+    ordered_duty_ids = @record_list.map { |record| record[:duty_id] }
+
+    @members = Member.find(ordered_member_ids).sort_by{ |o| ordered_member_ids.index(o.id)}
+    @duties = ordered_duty_ids.map { |duty_id| Duty.find(duty_id) }
   end
 
   private
 
   def record_params
-    params.require(:record).permit(:member_id, :counter_id, :duty_id)
+    params.require(:record).permit(:member_id, :datetime, :duty_id)
   end
 end

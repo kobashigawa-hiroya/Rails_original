@@ -1,9 +1,39 @@
-<h1>結果発表</h1>
-<strong>名前</strong>
-<% @members.each do |member| %>
-  <%= member.name %>
-<% end %>
-<% @duties.each do |duty| %>
-  <strong>項目</strong>
-  <%= duty.title %>
-<% end %>
+<%= javascript_pack_tag 'todo' %>
+<div id="table">
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <p class="title">Your destiny..... <a href="https://github.com/jgthms/bulma/issues/1080">Result announcement</a> </p>
+        <p class="subtitle">good? Or but?</p>
+      </div>
+    </div>
+  </section>
+  <div class="demo">
+    <br>
+    <table class="table is-responsive">
+      <thead>
+        <tr>
+          <th><strong>名前</strong>
+          </th>
+          <th>  <strong>項目</strong>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.count.times do |i| %>
+          <tr>
+            <td>
+              <%= @members[i].name %>
+            </td>
+            <td>
+              <%= @duties[i].title %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="voo">
+  <navbar></navbar>
+</div>

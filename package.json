@@ -2,16 +2,25 @@
   "name": "rails_vue_original",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
+    "axios": "^0.20.0",
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
+    "uikit": "^3.5.9",
     "vue": "^2.6.12",
+    "vue-axios": "^3.0.1",
     "vue-loader": "^15.9.3",
+    "vue-router": "^3.4.6",
     "vue-template-compiler": "^2.6.12",
     "vue-turbolinks": "^2.1.0",
-    "vuetify": "^2.3.13"
+    "vuetify": "^2.3.13",
+    "vuex": "^3.5.1"
   },
   "version": "0.1.0",
   "devDependencies": {

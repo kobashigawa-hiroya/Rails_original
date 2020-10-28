@@ -5,21 +5,27 @@
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
-import Vue from 'vue';
+import Vue from "vue";
 import Vuetify from "vuetify"; // 追加
 import "vuetify/dist/vuetify.min.css"; // 追加
-import App from '../app.vue'
+import App from "../app.vue";
+// import Vue from 'vue/dist/vue.esm.js'
+import Header from './components/Header.vue'
+
 
 Vue.use(Vuetify); // 追加
 const vuetify = new Vuetify(); // 追加
 
-document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    render: h => h(App)
-  }).$mount()
-  document.body.appendChild(app.$el)
 
-  console.log(app)
+
+document.addEventListener("DOMContentLoaded", () => {
+  const app = new Vue({
+    vuetify,
+    render: (h) => h(App),
+  }).$mount();
+  document.body.appendChild(app.$el);
+
+  console.log(app);
 
   const titleCheckboxs = document.querySelectorAll(".title-checkbox");
   const member = document.querySelectorAll(".title-checkbox");
@@ -79,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(count);
     };
 
-    btn.addEventListener("click", getCheckedCount, false);
   });
   $(function () {
     $("input:checkbox")
@@ -108,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger("change");
         }
       });
+      
 
       // titleCheckboxs.forEach((titleCheckbox) => {
       //   titleCheckbox.addEventListener("change", (e) => {
@@ -121,8 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // var dutyTitle = [" "]
 });
 
-
-
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would
 // need to always use single file components.
@@ -135,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //   {{message}}
 //   <app></app>
 // </div>
-
 
 // import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
@@ -158,20 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 // Then uncomment the code block below:
 //
-// import TurbolinksAdapter from 'vue-turbolinks'
-// import Vue from 'vue/dist/vue.esm'
-// import App from '../app.vue'
-//
-// Vue.use(TurbolinksAdapter)
-//
-// document.addEventListener('turbolinks:load', () => {
+// import Vue from "vue/dist/vue.esm";
+// import App from "../app.vue";
+
+// Vue.use(TurbolinksAdapter);
+
+// document.addEventListener("turbolinks:load", () => {
 //   const app = new Vue({
-//     el: '#hello',
+//     el: "#hello",
 //     data: () => {
 //       return {
-//         message: "Can you say hello?"
-//       }
+//         message: "Can i help me?",
+//       };
 //     },
-//     components: { App }
-//   })
-// })
+//     components: {
+//       app,
+//     },
+//   });
+// });
