@@ -420,3 +420,19 @@ a.btn-border:hover:after {
   text-align: center;
 }
 
+@keyframes my-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 3;
+  }
+}
+// #table {
+//   animation-name:     my-fade-in;
+//   animation-duration: 7s;
+// }
+
+// .img {
+//   animation: my-fade-out-keyframes 3s ease 0.5s 1 forwards;
+// }

@@ -5,12 +5,20 @@
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
+require("@rails/ujs").start();
+require("turbolinks").start();
+
+
 import Vue from "vue";
 import Vuetify from "vuetify"; // 追加
 import "vuetify/dist/vuetify.min.css"; // 追加
 import App from "../app.vue";
 // import Vue from 'vue/dist/vue.esm.js'
 import Header from './components/Header.vue'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
 
 
 Vue.use(Vuetify); // 追加
@@ -113,8 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
           trigger("change");
         }
       });
+      $(function(){
+        // リストを非表示
+        $('text').hide();
+        // 繰り返し処理
+        $('text').each(function(i) {
+        // 遅延させてフェードイン
+        $(this).delay(500 * i).fadeIn(1000);
+        });
+        });
       
-
       // titleCheckboxs.forEach((titleCheckbox) => {
       //   titleCheckbox.addEventListener("change", (e) => {
       // var dutybox = $('duty-checkboxes').title();
@@ -122,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  
   //   if ("get_textbox_value" === "calculated_total_sum") {}
   // });
   // var dutyTitle = [" "]

@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+
   def new
     @member = Member.new
   end
@@ -8,17 +9,19 @@ class MembersController < ApplicationController
 
   def create
     member = Member.create!(member_params)
-    redirect_to member
+    # duty = Duty.create!(duty_params)
+    redirect_to root_path  
   end
 
   def show
-    @member = Member.find(params[:id])
+    # @member = Member.find(params[:id])
   end
 
   def destroy
-    member = Member.find(params[:id])
-    member.destroy!
-    redirect_to member
+    @member = Member.find(params[:id])
+    # params[:member][:name]
+    @member.destroy!
+    redirect_to root_path alert: "削除しました！"
   end
 
   def update
@@ -36,4 +39,9 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name)
   end
+
+  def doty_params
+    params.require(:doty).permit(:title)
+  end
+  
 end

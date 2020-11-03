@@ -1,6 +1,9 @@
 <%= javascript_pack_tag 'todo' %>
 <div id="table">
-  <section class="hero is-primary">
+<p class="img">
+<%= image_tag 'ruleta.gif' %>
+</p> 
+<section class="hero is-primary">
     <div class="hero-body">
       <div class="container">
         <p class="title">Your destiny..... <a href="https://github.com/jgthms/bulma/issues/1080">Result announcement</a> </p>
@@ -10,6 +13,7 @@
   </section>
   <div class="demo">
     <br>
+    <div class="text">
     <table class="table is-responsive">
       <thead>
         <tr>
@@ -22,10 +26,10 @@
       <tbody>
         <% @members.count.times do |i| %>
           <tr>
-            <td>
+            <td class="member_text">
               <%= @members[i].name %>
             </td>
-            <td>
+            <td class="duty_text">
               <%= @duties[i].title %>
             </td>
           </tr>
@@ -33,6 +37,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>
 <div id="voo">
   <navbar></navbar>
