@@ -7,7 +7,9 @@
 
 require("@rails/ujs").start();
 require("turbolinks").start();
-
+require("chartkick") // 追記
+require("chart.js") // 追記
+require("chartjs-plugin-labels/src/chartjs-plugin-labels")
 
 import Vue from "vue";
 import Vuetify from "vuetify"; // 追加
@@ -130,11 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
         $(this).delay(500 * i).fadeIn(1000);
         });
         });
+        
       
       // titleCheckboxs.forEach((titleCheckbox) => {
       //   titleCheckbox.addEventListener("change", (e) => {
       // var dutybox = $('duty-checkboxes').title();
       // $('p').text(dutybox);
+      
     });
   });
 
