@@ -5,6 +5,7 @@ class MembersController < ApplicationController
   end
 
   def index
+    
   end
 
   def create

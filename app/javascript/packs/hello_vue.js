@@ -50,6 +50,58 @@ document.addEventListener("DOMContentLoaded", () => {
   //#member checkbox選択合計
   let memberCheckCount;
 
+  // 円グラフ
+
+  var memberChartCtx = document.getElementById('member-chart').getContext('2d');
+  var memberDataRatio = []
+  var memberLabels = []
+  var memberBackgrandColor = [
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(255, 206, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(255, 159, 64, 0.2)'
+    ]
+  var memberBorderColor = [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)'
+    ]
+  var memberData = {
+    labels: memberLabels,
+    datasets: [{
+      data: memberDataRatio,
+      labels: memberLabels,
+      backgroundColor: memberBackgrandColor,
+      borderColor: memberBorderColor,
+      borderWidth: 1
+    }],
+  }
+  var memberChart = new Chart(memberChartCtx, {
+    type: 'pie',
+    data: memberData,
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+          labels: {
+            render: 'label',
+            position: 'default',
+            arc: true
+          }            
+        }
+    }
+  })
+
   titleCheckboxs.forEach((titleCheckbox) => {
     titleCheckbox.addEventListener("change", (e) => {
       const DutyCheckboxes = e.target.closest("p.duty-checkboxes");
@@ -96,14 +148,46 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
   });
-  $(function () {
     $("input:checkbox")
       .change(function () {
         var memberCheckCount = $("#member input:checkbox:checked").length;
         $("p.memberuret").text("選択合計：" + memberCheckCount + "人");
+        const name = this.parentNode.querySelector('label').innerText
+        if(this.checked) {
+          memberDataRatio.push(1)
+          memberLabels.push(name)
+          memberChart.data = {
+            labels: memberLabels,
+            datasets: [{
+              data: memberDataRatio,
+              labels: memberLabels,
+              backgroundColor: memberBackgrandColor,
+              borderColor: memberBorderColor,
+              borderWidth: 1
+            }],
+          }        
+          memberChart.update()
+        } else {
+          const idx = memberLabels.indexOf(name)
+          if (idx => 0) {
+            memberLabels.splice(idx, 1)
+            memberDataRatio.pop()
+
+            memberChart.data = {
+              labels: memberLabels,
+              datasets: [{
+                data: memberDataRatio,
+                labels: memberLabels,
+                backgroundColor: memberBackgrandColor,
+                borderColor: memberBorderColor,
+                borderWidth: 1
+              }],
+            }        
+            memberChart.update()
+          }
+        }
       })
-      .trigger("change");
-  });
+  
   $("#duty").on("input", ".people-number", function () {
     calculatedTotalSum = 0;
 
@@ -138,7 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //   titleCheckbox.addEventListener("change", (e) => {
       // var dutybox = $('duty-checkboxes').title();
       // $('p').text(dutybox);
-      
     });
   });
 
@@ -146,7 +229,39 @@ document.addEventListener("DOMContentLoaded", () => {
   //   if ("get_textbox_value" === "calculated_total_sum") {}
   // });
   // var dutyTitle = [" "]
-});
+
+
+})
+
+  // let datasets = [{
+  //   data: [1, 1, 1, 1],
+  //   labels: ['犬', '猫', 'うさぎ'],
+  //   backgroundColor: memberBackgrandColor,
+  //   borderColor: memberBorderColor,
+  //   borderWidth: 1
+  // }],
+
+  // チェックボックスにチェックを入れた時に次の操作を加える
+//   var ctx = document.getElementById('myChart').getContext('2d');
+//   var data = {
+//       datasets: [{
+//           data: [1, 1, 1]
+//       }],
+
+//   };
+//   new Chart('myChart', {
+//       type: 'pie',
+//       data: data,
+//       options: {
+//           title: {
+//               display: true,
+//               fontSize: 35,
+//               text: '好きな動物'
+//           },
+
+//       }
+//   });
+// });
 
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would

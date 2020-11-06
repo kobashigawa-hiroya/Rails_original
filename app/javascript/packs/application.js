@@ -39,6 +39,7 @@ document.addEventListener("turbolinks:load", () => {
 
   titleCheckboxs.forEach((titleCheckbox) => {
     titleCheckbox.addEventListener("change", (e) => {
+
       const DutyCheckboxes = e.target.closest("p.duty-checkboxes");
       const DutyInputNumber = DutyCheckboxes.querySelector(
         "input.people-number"

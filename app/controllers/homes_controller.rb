@@ -5,6 +5,8 @@ class HomesController < ApplicationController
     @duties = Duty.order(id: :asc)
     @member = Member.new
     @duty = Duty.new
+    gon.data = [ 
+    ]
   end
 
   def create
