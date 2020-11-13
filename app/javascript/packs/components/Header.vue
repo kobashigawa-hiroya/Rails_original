@@ -10,7 +10,7 @@ export default {
   // props: ["text"],
   data: function() {
     return {
-      text: "my app!",
+      text: "結果発表!",
     };
   },
 };

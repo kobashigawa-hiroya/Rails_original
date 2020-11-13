@@ -428,15 +428,51 @@ a.btn-border:hover:after {
     opacity: 3;
   }
 }
-// #table {
-//   animation-name:     my-fade-in;
-//   animation-duration: 7s;
-// }
+#table {
+  animation-name:     my-fade-in;
+  animation-duration: 7s;
+}
 
-// .img {
-//   animation: my-fade-out-keyframes 3s ease 0.5s 1 forwards;
-// }
+.img {
+  animation: my-fade-out-keyframes 3s ease 0.5s 1 forwards;
+}
 .container {
   width: 80%;
   margin: 15px auto;
+}
+
+input {
+  color: #fff;
+  // color: #999;
+  font-weight: 200;
+  border-color: skyblue;
+}
+
+
+#loader-bg {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: #000;
+  z-index: 1;
+}
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.text {
+  width: 100%;
 }

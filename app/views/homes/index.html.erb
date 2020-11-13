@@ -12,110 +12,77 @@
     <%= render "shared/flash_messages" %>
     <div class="container border p-3">
       <h1>トップページ</h1>
-      
-<div class="rocket">
-    <div class="rocket-body">
-      <div class="body"></div>
-      <div class="fin fin-left"></div>
-      <div class="fin fin-right"></div>
-      <div class="window"></div>
-    </div>
-    <div class="exhaust-flame"></div>
-    <ul class="exhaust-fumes">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <ul class="star">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-</body>      
-      <!-- This is a button toggling the modal -->
-      <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">Open</button>
-      <!-- This is an anchor toggling the modal -->
-      <!-- This is the modal -->
-      <div id="modal-example" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-          <h2 class="uk-modal-title">Member</h2>
-          <div id="member">
-            <%= form_with model: @record, local: true do |form| %>
-              <% @members.each do |member| %>
-                <p>
-                  <%= check_box_tag "name[]", member.id, false, id: "name_#{member.id}", class: "member-checkbox" %>
-                  <%= label_tag "name_#{member.id}", member.name %>
-                  <%= link_to '削除', member_path(member), method: :delete, data: { confirm: '削除しますか?' }, remote: true %>
-                  
-</p>
-                </p>
-              <% end %>
-            </div>
-            <p class="memberuret"></p>
-            <h2 class="uk-modal-title2">Duty</h2>
-            <div id="duty">
-              <% @duties.each do |duty| %>
-                <p class="duty-checkboxes">
-                  <%= check_box_tag "title[]", duty.id, false, id: "title_#{duty.id}", class: "title-checkbox" %>
-                  <%= label_tag "title_#{duty.id}", duty.title %>
-                  <input type="number" class="d-none people-number">
-                  <%= link_to '削除', duty_path(duty), method: :delete, data: { confirm: '削除しますか?' }, remote: true %>
-
-</p>
-                </p>
-              <% end %>
-              <p class="dutyruret"></p>
-              <td><span><b>合計 :</b></span></td>
-              <td><b><span id="total_sum_value"></span>個</b></td>
-              <p></p>
-              <div class="button is-primary is-inverted is-outlined">
-                <%= form.submit "送信" %>
-              </div>
-            </div>
+    <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #offcanvas-usage">let me try?</button>
+    <div id="offcanvas-usage" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <h3></h3>
+        <h2 class="uk-modal-title">Member</h2>
+        <div id="member">
+          <%= form_with model: @record, local: true do |form| %>
+            <% @members.each do |member| %>
+              <p>
+                <%= check_box_tag "name[]", member.id, false, id: "name_#{member.id}", class: "member-checkbox" %>
+                <%= label_tag "name_#{member.id}", member.name %>
+                <%= link_to '削除', member_path(member), method: :delete, data: { confirm: '削除しますか?' }, remote: true ,class: "uk-button uk-button-default uk-button-small"%>
+              </p>
+            </p>
           <% end %>
-          <h1>Member追加</h1>
-<%= form_with model: @member do |form| %>
-  <div>
-    <%= form.label :name, "新規member" %>
-    <%= form.text_field :name %>
-    <%= form.submit "送信" %>
-
-</p>
-<% end %>
-
-  </div>
-          <h1>Duty追加</h1>
-<%= form_with model: @duty do |form| %>
-  <div>
-    <%= form.label :title, "新規duty" %>
-    <%= form.text_field :title %>
-    <%= form.submit "送信" %>
-
-</p>
-
-  </div>
-  <div>
-  </div>
-<% end %>
-
         </div>
-        <p class="uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-          <button class="uk-button uk-button-primary" type="button">Save</button>
-        </p>
+        <p class="memberuret"></p>
+        <h2 class="uk-modal-title2">Duty</h2>
+        <div id="duty">
+          <% @duties.each do |duty| %>
+            <p class="duty-checkboxes">
+              <%= check_box_tag "title[]", duty.id, false, id: "title_#{duty.id}", class: "title-checkbox" %>
+              <%= label_tag "title_#{duty.id}", duty.title %>
+              <input type="number" class="d-none people-number">
+              <%= link_to '削除', duty_path(duty), method: :delete, data: { confirm: '削除しますか?' }, remote: true ,class: "uk-button uk-button-default uk-button-small"%>
+            </p>
+          </p>
+        <% end %>
+        <p class="dutyruret"></p>
+        <td><span><b>合計 :</b></span></td>
+        <td><b><span id="total_sum_value"></span>個</b></td>
+        <p></p>
+        <div class="uk-button uk-button-danger">
+          <%= form.submit "送信" %>
+        </div>
       </div>
-    </div>
-
-
+    <% end %>
+    <h1>Member追加</h1>
+    <%= form_with model: @member do |form| %>
+      <div>
+        <%= form.label :name, "新規member" %>
+        <%= form.text_field :name %>
+        <div class="uk-button uk-button-primary uk-button-small">
+          <%= form.submit "送信" %>
+        </div>
+      </p>
+    <% end %>
+  </div>
+  <h1>Duty追加</h1>
+  <%= form_with model: @duty do |form| %>
+    <div>
+      <%= form.label :title, "新規duty" %>
+      <%= form.text_field :title %>
+      <div class="uk-button uk-button-primary uk-button-small">
+        <%= form.submit "送信" %>
+      </div>
+    </p>
+  </div>
+  <div>
+  </div>
+<% end %>
+</div>
+</div>
+<div id="modal-example" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+  </div>
+  <p class="uk-text-right">
+    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+    <button class="uk-button uk-button-primary" type="button">Save</button>
+  </p>
+</div>
+</div>
 <canvas id="member-chart" width="400" height="400"></canvas>

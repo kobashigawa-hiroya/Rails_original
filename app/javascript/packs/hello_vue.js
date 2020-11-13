@@ -51,8 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let memberCheckCount;
 
   // 円グラフ
-
-  var memberChartCtx = document.getElementById('member-chart').getContext('2d');
+  var memberChart = document.getElementById('member-chart')
   var memberDataRatio = []
   var memberLabels = []
   var memberBackgrandColor = [
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     'rgba(75, 192, 192, 0.2)',
     'rgba(153, 102, 255, 0.2)',
     'rgba(255, 159, 64, 0.2)'
-    ]
+  ]
   var memberBorderColor = [
     'rgba(255, 99, 132, 1)',
     'rgba(54, 162, 235, 1)',
@@ -70,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     'rgba(75, 192, 192, 1)',
     'rgba(153, 102, 255, 1)',
     'rgba(255, 159, 64, 1)'
-    ]
+  ]
   var memberData = {
     labels: memberLabels,
     datasets: [{
@@ -81,26 +80,28 @@ document.addEventListener("DOMContentLoaded", () => {
       borderWidth: 1
     }],
   }
-  var memberChart = new Chart(memberChartCtx, {
-    type: 'pie',
-    data: memberData,
-    options: {
+  if (memberChart) {
+    var memberChart = new Chart(memberChart.getContext('2d'), {
+      type: 'pie',
+      data: memberData,
+      options: {
         scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
         },
         plugins: {
           labels: {
             render: 'label',
             position: 'default',
             arc: true
-          }            
+          }
         }
-    }
-  })
+      }
+    })
+  }
 
   titleCheckboxs.forEach((titleCheckbox) => {
     titleCheckbox.addEventListener("change", (e) => {
@@ -148,14 +149,31 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
   });
-    $("input:checkbox")
-      .change(function () {
-        var memberCheckCount = $("#member input:checkbox:checked").length;
-        $("p.memberuret").text("選択合計：" + memberCheckCount + "人");
-        const name = this.parentNode.querySelector('label').innerText
-        if(this.checked) {
-          memberDataRatio.push(1)
-          memberLabels.push(name)
+  $("input:checkbox")
+    .change(function () {
+      var memberCheckCount = $("#member input:checkbox:checked").length;
+      $("p.memberuret").text("選択合計：" + memberCheckCount + "人");
+      const name = this.parentNode.querySelector('label').innerText
+      if (this.checked) {
+        memberDataRatio.push(1)
+        memberLabels.push(name)
+        memberChart.data = {
+          labels: memberLabels,
+          datasets: [{
+            data: memberDataRatio,
+            labels: memberLabels,
+            backgroundColor: memberBackgrandColor,
+            borderColor: memberBorderColor,
+            borderWidth: 1
+          }],
+        }
+        memberChart.update()
+      } else {
+        const idx = memberLabels.indexOf(name)
+        if (idx => 0) {
+          memberLabels.splice(idx, 1)
+          memberDataRatio.pop()
+
           memberChart.data = {
             labels: memberLabels,
             datasets: [{
@@ -165,29 +183,12 @@ document.addEventListener("DOMContentLoaded", () => {
               borderColor: memberBorderColor,
               borderWidth: 1
             }],
-          }        
-          memberChart.update()
-        } else {
-          const idx = memberLabels.indexOf(name)
-          if (idx => 0) {
-            memberLabels.splice(idx, 1)
-            memberDataRatio.pop()
-
-            memberChart.data = {
-              labels: memberLabels,
-              datasets: [{
-                data: memberDataRatio,
-                labels: memberLabels,
-                backgroundColor: memberBackgrandColor,
-                borderColor: memberBorderColor,
-                borderWidth: 1
-              }],
-            }        
-            memberChart.update()
           }
+          memberChart.update()
         }
-      })
-  
+      }
+    })
+
   $("#duty").on("input", ".people-number", function () {
     calculatedTotalSum = 0;
 
@@ -207,17 +208,17 @@ document.addEventListener("DOMContentLoaded", () => {
           trigger("change");
         }
       });
-      $(function(){
+      $(function () {
         // リストを非表示
         $('text').hide();
         // 繰り返し処理
-        $('text').each(function(i) {
-        // 遅延させてフェードイン
-        $(this).delay(500 * i).fadeIn(1000);
+        $('text').each(function (i) {
+          // 遅延させてフェードイン
+          $(this).delay(500 * i).fadeIn(1000);
         });
-        });
-        
-      
+      });
+
+
       // titleCheckboxs.forEach((titleCheckbox) => {
       //   titleCheckbox.addEventListener("change", (e) => {
       // var dutybox = $('duty-checkboxes').title();
@@ -225,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  
+
   //   if ("get_textbox_value" === "calculated_total_sum") {}
   // });
   // var dutyTitle = [" "]
@@ -233,15 +234,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
-  // let datasets = [{
-  //   data: [1, 1, 1, 1],
-  //   labels: ['犬', '猫', 'うさぎ'],
-  //   backgroundColor: memberBackgrandColor,
-  //   borderColor: memberBorderColor,
-  //   borderWidth: 1
-  // }],
+// let datasets = [{
+//   data: [1, 1, 1, 1],
+//   labels: ['犬', '猫', 'うさぎ'],
+//   backgroundColor: memberBackgrandColor,
+//   borderColor: memberBorderColor,
+//   borderWidth: 1
+// }],
 
-  // チェックボックスにチェックを入れた時に次の操作を加える
+// チェックボックスにチェックを入れた時に次の操作を加える
 //   var ctx = document.getElementById('myChart').getContext('2d');
 //   var data = {
 //       datasets: [{
