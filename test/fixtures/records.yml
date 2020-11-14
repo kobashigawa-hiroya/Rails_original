@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  counter: one
+  duty: one
+
+two:
+  member: two
+  counter: two
+  duty: two

@@ -1,0 +1,103 @@
+<%= javascript_pack_tag 'todo' %>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <p class="title">Your destiny..... <a href="https://github.com/jgthms/bulma/issues/1080">Result announcement</a> </p>
+      <p class="subtitle">good? Or but?</p>
+    </div>
+  </div>
+</section>
+<div class="rocket">
+  <div class="rocket-body">
+    <div class="body"></div>
+    <div class="fin fin-left"></div>
+    <div class="fin fin-right"></div>
+    <div class="window"></div>
+  </div>
+  <div class="exhaust-flame"></div>
+  <ul class="exhaust-fumes">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <ul class="star">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<br>
+<div class="text">
+  <% @members.count.times do |i| %>
+    <div class="uk-card uk-card-default uk-card-body" >
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            <td class="member_text">
+              <strong>名前</strong>
+              <%= @members[i].name %>
+            </td>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-card uk-card-primary uk-card-body">
+      <td class="duty_text">
+        <strong>項目</strong>
+        <%= @duties[i].title %>
+      </td>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>
+</div>
+</div>
+<div id="voo">
+  <navbar></navbar>
+</div>
+<div id="loader-bg">
+  <div id="loader">
+    <%= image_tag 'ruleta.gif',size: '1500x500' %>
+    <img src="img-loading.gif" width="700" height="700" alt="Time to decide fate..." />
+    <strong>let roulette</strong>
+  </div>
+</div>
+<div id="wrap">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  $(function() {
+    var h = $(window).height();
+  
+    $('#wrap').css('display','none');
+    $('#loader-bg ,#loader').height(h).css('display','block');
+  });
+  
+  $(window).load(function () { //全ての読み込みが完了したら実行
+    $('#loader-bg').delay(900).fadeOut(800);
+    $('#loader').delay(600).fadeOut(300);
+    $('#wrap').css('display', 'block');
+  });
+  
+  //10秒たったら強制的にロード画面を非表示
+  $(function(){
+    setTimeout('stopload()',20000);
+  });
+  
+  function stopload(){
+    $('#wrap').css('display','block');
+    $('#loader-bg').delay(900).fadeOut(800);
+    $('#loader').delay(600).fadeOut(300);
+  }
+</script>
