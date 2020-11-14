@@ -6,14 +6,7 @@ ruby "2.6.6"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0.3", ">= 6.0.3.4"
 # Use pg as the database for Active Record
-<<<<<<< HEAD
-gem "sqlite3", groups: %w(test development), require: false
-
-gem "pg", groups: %w(production), require: false
-
-=======
-gem 'pg', '>= 0.18', '< 2.0'
->>>>>>> 20b97e4e1a24f1f0ab3d32d54ee5a3bf4a1ab980
+gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
 gem "puma", "~> 4.1"
 # Use SCSS for stylesheets
@@ -34,8 +27,7 @@ gem "jbuilder", "~> 2.7"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
-<<<<<<< HEAD
-=======
+
 # ログイン機能
 gem "devise"
 
@@ -50,7 +42,6 @@ gem "pry-rails"
 gem "pry-byebug"
 gem "pry-doc"
 gem "gon"
->>>>>>> 20b97e4e1a24f1f0ab3d32d54ee5a3bf4a1ab980
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
